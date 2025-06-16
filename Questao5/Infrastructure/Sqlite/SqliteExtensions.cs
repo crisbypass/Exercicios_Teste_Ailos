@@ -1,16 +1,9 @@
-﻿using Castle.Components.DictionaryAdapter;
-using Dapper;
+﻿using Dapper;
 using Microsoft.Data.Sqlite;
-using Questao5.Domain.Common.DTOs;
-using Questao5.Domain.Entities;
 using Questao5.Domain.Enumerators;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Security.Principal;
 using static Dapper.SqlMapper;
 
 namespace Questao5.Infrastructure.Sqlite

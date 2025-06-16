@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Primitives;
 using Questao5.Domain.Common.DTOs;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace Questao5.Infrastructure.Filters
 {
