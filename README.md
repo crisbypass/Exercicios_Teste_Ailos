@@ -1,1 +1,0 @@
-# Teste_de_C#_da_Ailos
