@@ -22,16 +22,11 @@ namespace Questao5.Infrastructure.Database.Cache
 
             var guid = Guid.Parse(key);
 
-            var d = await repository.BuscarUnicoAsync(k => k.Chave_Idempotencia, guid);
+            var cache = await repository.BuscarUnicoAsync(k => k.Chave_Idempotencia, guid);
 
-            if (d != null)
-            {
-                var bytes = Encoding.UTF8.GetBytes(System.Text.Json.JsonSerializer.Serialize(d.ToDto()));
-
-                return bytes;
-            }
-
-            return default!;
+            var bytes = Encoding.UTF8.GetBytes(System.Text.Json.JsonSerializer.Serialize(cache.ToDto()));
+            
+            return bytes;
         }
 
         public void Refresh(string key)
@@ -60,9 +55,35 @@ namespace Questao5.Infrastructure.Database.Cache
             throw new NotImplementedException();
         }
 
-        public Task SetAsync(string key, byte[] value, DistributedCacheEntryOptions options, CancellationToken token = default)
+        public async Task SetAsync(string key, byte[] value, DistributedCacheEntryOptions options, CancellationToken token = default)
         {
-            throw new NotImplementedException();
+
+            await using var scope = _serviceProvider.CreateAsyncScope();
+
+            var repository = scope.ServiceProvider.GetRequiredService<IGenericRepository<Idempotencia>>();
+
+            var guid = Guid.Parse(key);
+
+            var content = Encoding.Default.GetString(value);
+
+            var existing = await repository.BuscarUnicoAsync(k => k.Chave_Idempotencia, guid);
+
+            if (existing != null)
+            {
+                existing.Resultado = content;
+
+                await repository.EditarAsync(k => k.Chave_Idempotencia, existing);
+            }
+            else
+            {
+                var insert = new Idempotencia
+                {
+                    Chave_Idempotencia = guid,
+                    Resultado = content
+                };
+
+                await repository.InserirAsync(insert);
+            }
         }
     }
 }

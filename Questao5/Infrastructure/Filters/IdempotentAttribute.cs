@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Primitives;
+using Questao5.Domain.Common.DTOs;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -32,9 +34,10 @@ namespace Questao5.Infrastructure.Filters
             string? cachedResult = await cache.GetStringAsync(cacheKey);
             if (cachedResult is not null)
             {
-                IdempotentResponse response = JsonSerializer.Deserialize<IdempotentResponse>(cachedResult)!;
+                IdempotenciaDto response = JsonSerializer.Deserialize<IdempotenciaDto>(cachedResult)!;
 
-                var result = new ObjectResult(response.Value) { StatusCode = response.StatusCode };
+                var result = new ObjectResult(response) { StatusCode = StatusCodes.Status200OK };
+                
                 context.Result = result;
 
                 return;
@@ -45,7 +48,7 @@ namespace Questao5.Infrastructure.Filters
             if (executedContext.Result is ObjectResult { StatusCode: >= 200 and < 300 } objectResult)
             {
                 int statusCode = objectResult.StatusCode ?? StatusCodes.Status200OK;
-                IdempotentResponse response = new(statusCode, objectResult.Value);
+                IdempotenciaDto response = (IdempotenciaDto)objectResult.Value!;
 
                 await cache.SetStringAsync(
                     cacheKey,
@@ -54,12 +57,5 @@ namespace Questao5.Infrastructure.Filters
                 );
             }
         }
-    }
-
-    [method: JsonConstructor]
-    internal sealed class IdempotentResponse(int statusCode, object? value)
-    {
-        public int StatusCode { get; } = statusCode;
-        public object? Value { get; } = value;
-    }
+    }    
 }

@@ -16,10 +16,12 @@ namespace Questao5.Infrastructure.Services.Controllers
 
         [SwaggerOperationFilter(typeof(AddHeaderParameter))]
         [Idempotent]
-        [HttpGet("Teste")]
-        public async Task<IActionResult> Teste()
+        [HttpGet("[action]")]
+        public async Task<IActionResult> Idempotencia()
         {
-            return await Task.FromResult(Ok(new { Mensagem = "Tudo OK!" }));
+            // retornará diretamente os resultados em cache e o pipeline será 
+            // interrompido antes de efetuar o processamento total.
+            return await Task.FromResult(Ok());
         }
         
         [HttpPost("[action]")]

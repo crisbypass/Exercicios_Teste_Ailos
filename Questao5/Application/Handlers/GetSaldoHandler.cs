@@ -30,7 +30,7 @@ namespace Questao5.Application.Handlers
 
             var conta = await _contaRepository.BuscarUnicoAsync(f => f.IdContaCorrente, request.IdContaCorrente);
 
-            var saldo = await _contaRepository.BuscarSaldoAsync(k => k.IdContaCorrente, conta);
+            var saldo = await _contaRepository.BuscarSaldoAsync(k => k.IdContaCorrente, conta.IdContaCorrente);
 
             return new GetSaldoResponse
             {
