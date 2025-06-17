@@ -5,5 +5,6 @@
         public Guid Chave_Idempotencia { get; set; }
         public string Requisicao { get; set; } = default!;
         public string Resultado { get; set; } = default!;
+        public DateTime Expiracao { get; set; }
     }
 }

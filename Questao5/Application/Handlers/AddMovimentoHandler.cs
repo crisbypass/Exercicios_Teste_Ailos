@@ -48,10 +48,7 @@ namespace Questao5.Application.Handlers
 
             if (success)
             {
-                await _mediator.Publish(new MovimentoCreatedEvent
-                {
-                    Movimento = movimento.ToDto()
-                }, cancellationToken);
+                await _mediator.Publish(new MovimentoCreatedEvent(movimento.ToDto()), cancellationToken);
 
                 return new AddMovimentoResponse
                 {

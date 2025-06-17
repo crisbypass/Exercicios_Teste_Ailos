@@ -7,6 +7,10 @@ using System.Text.Json;
 
 namespace Questao5.Infrastructure.Filters
 {
+    /// <summary>
+    /// Vamos aplicar uma verificação do cache, antes do processamento total do pipeline da requisição.
+    /// </summary>
+    /// <param name="cacheTimeInMinutes"></param>
     [AttributeUsage(AttributeTargets.Method)]
     internal sealed class IdempotentAttribute(int cacheTimeInMinutes = IdempotentAttribute.DefaultCacheTimeInMinutes) : Attribute, IAsyncActionFilter
     {

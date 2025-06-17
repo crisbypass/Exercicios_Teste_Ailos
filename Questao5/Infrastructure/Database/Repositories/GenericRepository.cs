@@ -46,5 +46,7 @@ namespace Questao5.Infrastructure.Database.Repositories
 
         public Task<double> BuscarSaldoAsync(Expression<Func<TEntity, object>> keys, params object[] contaId)
             => _sqlConnection.BuscarSaldoAsync(keys, contaId);
+        public Task<bool> ExcluirExpiradosCacheAsync<TCacheEntity>() where TCacheEntity : class
+            => _sqlConnection.ExcluirExpiradosCacheAsync<TCacheEntity>();
     }
 }

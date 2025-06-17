@@ -284,6 +284,20 @@ namespace Questao5.Infrastructure.Sqlite
 
             return result;
         }
+        public static async Task<bool> ExcluirExpiradosCacheAsync<TCacheEntity>(this SqliteConnection connection)
+            where TCacheEntity : class
+        {
+            const string deleteTemplate = "DELETE FROM {0} WHERE Expiracao < @Data;";
+
+            string deleteSql = string.Format(deleteTemplate, typeof(TCacheEntity).Name);
+
+            SqliteHandlers.ApplyTypeHandlers();
+
+            var result = await connection.ExecuteAsync(deleteSql, new { Data = DateTime.Now }) > 0;
+
+            return result;
+        }
+
         public static async Task<double> BuscarSaldoAsync<TEntity>(this SqliteConnection connection,
             Expression<Func<TEntity, object>> keys,
             params object[] contaId)

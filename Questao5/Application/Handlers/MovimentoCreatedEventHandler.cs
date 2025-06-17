@@ -11,12 +11,12 @@ namespace Questao5.Application.Handlers
         private readonly IDistributedCache _distributedCache = distributedCache;
         public async Task Handle(MovimentoCreatedEvent notification, CancellationToken cancellationToken)
         {
-            var idMovimento = notification.Movimento.IdMovimento.ToString();
+            var idMovimento = $"{nameof(MovimentoCreatedEvent)}_{notification.Movimento.IdMovimento}";
 
             var bytes = Encoding.UTF8.GetBytes(System.Text.Json.JsonSerializer.Serialize(
                 notification.Movimento));
 
-            await _distributedCache.SetAsync(idMovimento, bytes, cancellationToken);            
+            await _distributedCache.SetAsync(idMovimento, bytes, cancellationToken);
         }
     }
 }

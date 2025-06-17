@@ -22,5 +22,6 @@ namespace Questao5.Infrastructure.Database.Repositories
         Task<bool> ExcluirAsync(Expression<Func<TEntity, object>> keys, params object[] keyValues);
         Task<bool> InserirAsync(TEntity item);
         Task<double> BuscarSaldoAsync(Expression<Func<TEntity, object>> keys, params object[] contaId);
+        Task<bool> ExcluirExpiradosCacheAsync<TCacheEntity>() where TCacheEntity : class;
     }
 }

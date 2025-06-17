@@ -20,8 +20,10 @@ bastante prático, o <a href="https://www.linqpad.net/">LinqPad</a>, além do MS
 
 ### 🔩 Refinamento
 
-Fazer um acompanhamento das necessidades de negócio e de crescimento da complexidade da aplicação,
-para um melhor planejamento das mudanças.
+Seria interessante pensar em um esquema de identidade e segurança, além do desempenho. Mas para verificar a idempotência, conforme solicitado nas instruções, basta recuperar uma 
+chave(GUID) válida, retornada de uma operação de movimentos e aplicar nos parâmetros dos cabeçalhos de requisição pré-definidos para o endpoint de testes. Caso seja desejável testar
+com outro endpoint, basta aplicar o atributo 'Idempotent' para a ação em questão, além de habilitar no Swagger. O código já vêm com um modelo.
+
 
 ### 🔩 Futuras Melhorias
 
