@@ -3,6 +3,10 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Questao5.Infrastructure.Filters
 {
+    /// <summary>
+    /// Será interessante acompanhar como o valor da chave única  
+    /// poderá ser usada na Idempotência.
+    /// </summary>
     public class AddHeaderParameter : IOperationFilter
     {
         public void Apply(OpenApiOperation operation, OperationFilterContext context)

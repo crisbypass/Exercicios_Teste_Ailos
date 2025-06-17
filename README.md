@@ -4,19 +4,19 @@ Testes da Ailos - Uma possível solução para o desafio proposto pela equipe.
 
 ## 🚀 Iniciando
 
-Os projetos usam um template padrão do VS, incluindo o WebAPI RestFul. Suas configurações e recursos originais foram mantidas, na medidada do
-possível, como o Swagger, entre outros. Mas foi preciso resolver conflitos de versionamento de pacotes do Nuget e outras dependências, além de
-algumas inconcistências de dependências e no código.
+Os projetos usam templates padrão do Visual Studio, incluindo o WebAPI RestFul. Suas configurações e recursos originais foram mantidas, na medidada do
+possível, como o Swagger, entre outros. Foi preciso resolver conflitos de versionamento de pacotes do Nuget e outras dependências, além de algumas
+inconsistências.
 
-Há um uso um pouco intensivo de recursos específicos como reflection e árvores de expressões, mas como não foram utilizadas ferramentas
-embutidas ou nativas do Visual Studio em partes, algumas de terceiros e de grande praticidade como o EF CORE(Migrations e Afins), ASP.NET Identity e outros, 
-a velocidade e praticidade de desenvolvimento foram bem reduzidas, pois há o lado positivo do uso das ferramentas sugeridas como o Micro ORM Dapper, por exemplo,
-mas também existem contratempos, como facilidades e recursos não intuitivos.
+Há um uso um pouco intensivo de recursos específicos como reflection e árvores de expressões, mas como não foram utilizadas algumas ferramentas prontas e
+embutidas, ou nativas do Visual Studio(em partes), ou algumas de terceiros, ou de grande praticidade como o EF CORE(Migrations e Afins), ASP.NET Identity entre outros, 
+a velocidade de desenvolvimento foi bem reduzida, pois embora haja o lado positivo do uso das ferramentas sugeridas, como o Micro ORM Dapper, existem também outros
+contratempos, sem tantas facilidades e recursos intuitivos.
 
 ### 📋 Pré-requisitos
 
-Visual Studio 2022, acredito ser o bastante. Mas foi utilizado também o <a href="https://sqlitestudio.pl/">editor do SqLite Studio</a>, que é
-bastante prático, além do MS SQL Server(através do Management Studio).
+Visual Studio 2022, acredito ser o suficiente. Mas foi utilizado também o <a href="https://sqlitestudio.pl/">editor do SqLite Studio</a>, que é
+bastante prático, o <a href="https://www.linqpad.net/">LinqPad</a>, além do MS SQL Server(através do Management Studio).
 
 ### 🔩 Refinamento
 
@@ -25,20 +25,21 @@ para um melhor planejamento das mudanças.
 
 ### 🔩 Futuras Melhorias
 
-Aplicação de um padrão mais consistente de arquitetura, com o uso o CRQS(Command and Query Responsibility Segregation), EDA(Event Driven Architecture), entre outros.
+Aplicação de um padrão mais consistente de arquitetura, refinando ainda mais o uso o CRQS(Command and Query Responsibility Segregation), EDA(Event Driven Architecture), entre outros.
 
 ### ⌨️ Sobre o código
 
-Em sua maior parte, usa a linguagem c# e os recursos disponiblizados pela plataforma .Net. Algumas mudanças na estrutura original foram efetudas, por necessidade.
-Sobre o uso de Idempotência, foi montada uma estrutura muito básica, porém customizada, para retenção do cache. Os testes foram bastante
+Em sua maior parte, foi utilizada a linguagem C# e os recursos disponiblizados pela plataforma unificada Microsoft.Net. Algumas mudanças na estrutura original foram efetudas, 
+para um funcionamento satisfatório. Sobre o uso de Idempotência, foi montada uma estrutura muito básica, porém customizada, para retenção do cache. Pelo que tenho percebido na
+comunidade de desenvolvimento, não parece muito simples estabelecer se de fato existe um consenso quanto às convenções ou formatos padronizados utilizados na arquitetura limpa,
+ou sobre o príncípio de responsabilidade única, orientação a eventos, entre outros. Sendo assim, ao menos para esta entrega, não houve subdivisão em Dll's desacopláveis.
 
 ##  Importante:
 
 Parte do código contém observações relevantes e outros pontos de atenção, visando melhorias 
-e esclarecimento de dúvidas. Agradeço muito a toda equipe pelo apoio e compreensão, para que 
-fosse possível um refinamento mais adequado, para a entrega dos testes.
+e esclarecimento de dúvidas. Agradeço muito a equipe pelo apoio e compreensão, para que fosse possível
+um refinamento mais adequado, para a entrega dos testes.
 
 ## 🛠️ Construído com
 
-Visual Studio(plataforma unificada .Net)
-Docker Desktop(Windows) - Hyper-V
+Visual Studio(.Net), Windows Server e a plataforma de gerenciamento virtual Hyper-V.

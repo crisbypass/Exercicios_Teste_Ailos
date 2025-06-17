@@ -34,7 +34,7 @@ namespace Questao5.Infrastructure.Database.Repositories
         protected readonly SqliteConnection _sqlConnection = sqlConnection;
         public Task<TEntity> BuscarUnicoAsync(Expression<Func<TEntity, object>> keys, params object[] keyId)
             => _sqlConnection.BuscarUnicoAsync(keys, keyId);
-        public Task<IEnumerable<T>> BuscarVariosAsync<T>(Func<IQueryable<TEntity>, IQueryable<T>> query)
+        public Task<IEnumerable<T>> BuscarVariosAsync<T>(Expression<Func<TEntity, object>> keys, params object[] keyValues)
         {
             throw new NotImplementedException();
         }        

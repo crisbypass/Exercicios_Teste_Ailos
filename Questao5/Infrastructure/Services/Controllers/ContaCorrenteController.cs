@@ -12,18 +12,26 @@ namespace Questao5.Infrastructure.Services.Controllers
     [ApiController]
     public class ContaCorrenteController(IMediator mediator) : ControllerBase
     {
-        private readonly IMediator _mediator = mediator;        
+        private readonly IMediator _mediator = mediator;
 
+        /// <summary>
+        /// retornará diretamente os resultados em cache e o pipeline será 
+        /// interrompido antes de efetuar o processamento total. Foi adicionado
+        /// para verificação de comportamento do cache.
+        /// </summary>        
         [SwaggerOperationFilter(typeof(AddHeaderParameter))]
         [Idempotent]
         [HttpGet("[action]")]
         public async Task<IActionResult> Idempotencia()
-        {
-            // retornará diretamente os resultados em cache e o pipeline será 
-            // interrompido antes de efetuar o processamento total.
+        {            
             return await Task.FromResult(Ok());
         }
-        
+        /// <summary>
+        /// Geralmente métodos como o Post, não são(ou não deveriam)
+        /// ser Idempotentes. Mas é possível se adequar ao comportamento
+        /// com algum código.
+        /// </summary>
+        /// <param name="command"></param>        
         [HttpPost("[action]")]
         public async Task<IActionResult> Movimentar(AddMovimentoCommand command)
         {

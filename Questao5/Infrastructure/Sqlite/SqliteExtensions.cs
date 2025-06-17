@@ -385,7 +385,6 @@ namespace Questao5.Infrastructure.Sqlite
             return (entityName, includeName, keyInfos, joinPiece, whereColumns, parameters);
         }
     }
-
     public static class MappingUtils
     {
         public static string FetchEntityName<TEntity>() where TEntity : class => typeof(TEntity).Name;
@@ -621,7 +620,6 @@ namespace Questao5.Infrastructure.Sqlite
             return (results, true);
         }
     }
-
     abstract class SqliteTypeHandler<T> : TypeHandler<T>
     {
         // Parameters are converted by Microsoft.Data.Sqlite

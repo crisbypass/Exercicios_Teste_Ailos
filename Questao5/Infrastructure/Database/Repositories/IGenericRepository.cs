@@ -17,7 +17,7 @@ namespace Questao5.Infrastructure.Database.Repositories
         where TEntity : class
     {
         Task<TEntity> BuscarUnicoAsync(Expression<Func<TEntity, object>> keys, params object[] keyValues);
-        Task<IEnumerable<T>> BuscarVariosAsync<T>(Func<IQueryable<TEntity>, IQueryable<T>> query);
+        Task<IEnumerable<T>> BuscarVariosAsync<T>(Expression<Func<TEntity, object>> keys, params object[] keyValues);
         Task<bool> EditarAsync(Expression<Func<TEntity, object>> keys, TEntity item);
         Task<bool> ExcluirAsync(Expression<Func<TEntity, object>> keys, params object[] keyValues);
         Task<bool> InserirAsync(TEntity item);

@@ -13,7 +13,8 @@ namespace Questao5.Application.Handlers
         {
             var idMovimento = notification.Movimento.IdMovimento.ToString();
 
-            var bytes = Encoding.UTF8.GetBytes(System.Text.Json.JsonSerializer.Serialize(notification));
+            var bytes = Encoding.UTF8.GetBytes(System.Text.Json.JsonSerializer.Serialize(
+                notification.Movimento));
 
             await _distributedCache.SetAsync(idMovimento, bytes, cancellationToken);            
         }
